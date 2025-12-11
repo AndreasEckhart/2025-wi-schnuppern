@@ -24,11 +24,3 @@ void loop() {
     // hier kommt der Effekt-Code hin
 
 }
-
-
-/***********************************************************************************
- * hier kommt am Ende dein Effekt 1 hin - bis dahin einfach leer lassen
- ***********************************************************************************/
-void deinEffekt1(int step) {
-
-}

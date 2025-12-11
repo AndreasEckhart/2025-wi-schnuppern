@@ -1,52 +1,96 @@
 @echo off
-:: ***************************************************************
-:: WICHTIG: Setzt die Codepage auf UTF-8 für korrekte Umlaute.
-:: Das Skript MUSS selbst als UTF-8 gespeichert werden.
-chcp 65001 > nul
-:: ***************************************************************
+setlocal
 
-SET "REPO_URL=https://github.com/AndreasEckhart/2025-wi-schnuppern/archive/refs/heads/main.zip"
-SET "ZIP_FILE=repo_source.zip"
-SET "TARGET_DIR=2025-wi-schnuppern"
+:: === Einstellungen ===
+set REPO_OWNER=AndreasEckhart
+set REPO_NAME=2025-wi-schnuppern
+set ZIP_URL=https://github.com/%REPO_OWNER%/%REPO_NAME%/archive/refs/heads/main.zip
+set TARGET_DIR=%REPO_NAME%
+set ZIP_FILE=%REPO_NAME%.zip
 
-ECHO --- Vorbereitung und Bereinigung des Downloads ---
+echo =========================================
+echo   GitHub Repository herunterladen
+echo =========================================
+echo Lade %ZIP_URL%
+echo.
 
-:: 1. PRÜFEN und LÖSCHEN der alten ZIP-Datei
-IF EXIST "%ZIP_FILE%" (
-    ECHO Alte ZIP-Datei (%ZIP_FILE%) gefunden. Wird gelöscht...
-    DEL "%ZIP_FILE%"
+curl -L -o "%ZIP_FILE%" "%ZIP_URL%"
+if errorlevel 1 (
+    echo Fehler beim Herunterladen!
+    pause
+    exit /b 1
 )
 
-:: 2. PRÜFEN und LÖSCHEN des Zielordners
-IF EXIST "%TARGET_DIR%" (
-    ECHO Alter Zielordner (%TARGET_DIR%) gefunden. Wird gelöscht...
-    RD /S /Q "%TARGET_DIR%"
+echo.
+echo =========================================
+echo   ZIP entpacken
+echo =========================================
+
+if exist "%TARGET_DIR%" (
+    echo Entferne alten Ordner "%TARGET_DIR%"...
+    rmdir /s /q "%TARGET_DIR%"
 )
 
-ECHO --- Download starten ---
+powershell -command "Expand-Archive -Path '%ZIP_FILE%' -DestinationPath ."
 
-ECHO Starte Download des Source Codes für die Übung...
+if exist "%REPO_NAME%-main" (
+    ren "%REPO_NAME%-main" "%TARGET_DIR%"
+)
 
-:: Verwende PowerShell, um das ZIP herunterzuladen
-PowerShell -Command "Invoke-WebRequest -Uri '%REPO_URL%' -OutFile '%ZIP_FILE%'"
+del "%ZIP_FILE%"
 
-IF EXIST "%ZIP_FILE%" (
-    ECHO Download erfolgreich. Entpacke Dateien...
+echo Fertig entpackt.
+echo.
 
-    :: Verwende PowerShell, um das ZIP zu entpacken
-    PowerShell -Command "Expand-Archive -Path '%ZIP_FILE%' -DestinationPath '%TARGET_DIR%' -Force"
+echo =========================================
+echo   Arduino IDE suchen
+echo =========================================
 
-    IF EXIST "%TARGET_DIR%" (
-        ECHO Source Code erfolgreich in den Ordner "%TARGET_DIR%" entpackt.
-        ECHO Bereinige temporäre ZIP-Datei...
-        DEL "%ZIP_FILE%"
-        ECHO --- Erfolgreich abgeschlossen! ---
-        ECHO Source Code ist in "%TARGET_DIR%" verfügbar.
-    ) ELSE (
-        ECHO FEHLER: Das Entpacken ist fehlgeschlagen.
+set ARDUINO_PATH1=%LOCALAPPDATA%\Programs\Arduino IDE\Arduino IDE.exe
+set ARDUINO_PATH2=C:\Programme\Arduino IDE\Arduino IDE.exe
+
+set IDE_PATH=
+
+if exist "%ARDUINO_PATH1%" (
+    set IDE_PATH=%ARDUINO_PATH1%
+    echo Arduino IDE im Benutzerpfad gefunden.
+) else (
+    if exist "%ARDUINO_PATH2%" (
+        set IDE_PATH=%ARDUINO_PATH2%
+        echo Arduino IDE in C:\Programme gefunden.
     )
-) ELSE (
-    ECHO FEHLER: Der Download ist fehlgeschlagen. Überprüfen Sie die URL.
 )
 
-PAUSE
+if "%IDE_PATH%"=="" (
+    echo Fehler: Arduino IDE wurde nicht gefunden!
+    pause
+    exit /b 1
+)
+
+echo Verwende Arduino IDE: "%IDE_PATH%"
+echo.
+
+echo =========================================
+echo   Schnuppern.ino vorbereiten
+echo =========================================
+
+set INO_PATH=%TARGET_DIR%\Schnuppern\Schnuppern.ino
+
+if not exist "%INO_PATH%" (
+    echo Fehler: Die Datei "%INO_PATH%" wurde nicht gefunden!
+    pause
+    exit /b 1
+)
+
+echo Gefunden: "%INO_PATH%"
+echo.
+
+echo =========================================
+echo   Arduino IDE starten
+echo =========================================
+
+start "" "%IDE_PATH%" "%INO_PATH%"
+
+echo Arduino IDE wurde mit Schnuppern.ino gestartet.
+echo.
+pause
