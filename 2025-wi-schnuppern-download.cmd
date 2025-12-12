@@ -93,7 +93,7 @@ if exist "!INSTALL_SCRIPT_PS1!" (
     echo   Starte Installation...
     echo.
     timeout /t 1 /nobreak >nul
-    powershell -ExecutionPolicy Bypass -File "!INSTALL_SCRIPT_PS1!"
+    start "" powershell -ExecutionPolicy Bypass -File "!INSTALL_SCRIPT_PS1!"
     exit /b 0
 )
 
@@ -103,7 +103,7 @@ if exist "!INSTALL_SCRIPT_CMD!" (
     echo   Starte Installation...
     echo.
     timeout /t 1 /nobreak >nul
-    call "!INSTALL_SCRIPT_CMD!"
+    start "" "!INSTALL_SCRIPT_CMD!"
     exit /b 0
 )
 
