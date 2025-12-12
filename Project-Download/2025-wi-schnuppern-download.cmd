@@ -1,5 +1,4 @@
 @echo off
-chcp 65001 >nul 2>&1
 setlocal enabledelayedexpansion
 
 :: === Einstellungen ===
@@ -85,22 +84,33 @@ echo =========================================
 echo   Installation starten
 echo =========================================
 
-set "INSTALL_SCRIPT=!DOWNLOADS_DIR!\%TARGET_DIR%\Install\2025-WI-Schnuppertag-Install.cmd"
+set "INSTALL_SCRIPT_PS1=!DOWNLOADS_DIR!\%TARGET_DIR%\Install\2025-WI-Schnuppertag-Install.ps1"
+set "INSTALL_SCRIPT_CMD=!DOWNLOADS_DIR!\%TARGET_DIR%\Install\2025-WI-Schnuppertag-Install.cmd"
 
-if not exist "!INSTALL_SCRIPT!" (
-    echo   ✗ [FEHLER] Install-Script nicht gefunden!
-    echo   Erwarteter Pfad: !INSTALL_SCRIPT!
-    pause
-    exit /b 1
+:: Pruefe PowerShell-Version zuerst
+if exist "!INSTALL_SCRIPT_PS1!" (
+    echo   [OK] PowerShell Install-Script gefunden
+    echo   Starte Installation...
+    echo.
+    timeout /t 1 /nobreak >nul
+    powershell -ExecutionPolicy Bypass -File "!INSTALL_SCRIPT_PS1!"
+    exit /b 0
 )
 
-echo   ✓ Install-Script gefunden
-echo   Starte Installation...
-echo.
+:: Fallback auf CMD-Version
+if exist "!INSTALL_SCRIPT_CMD!" (
+    echo   [OK] CMD Install-Script gefunden
+    echo   Starte Installation...
+    echo.
+    timeout /t 1 /nobreak >nul
+    call "!INSTALL_SCRIPT_CMD!"
+    exit /b 0
+)
 
-timeout /t 2 /nobreak >nul
-
-:: Install-Script ausführen
-call "!INSTALL_SCRIPT!"
-
-exit /b 0
+:: Kein Script gefunden
+echo   [FEHLER] Install-Script nicht gefunden!
+echo   Gesucht:
+echo   - !INSTALL_SCRIPT_PS1!
+echo   - !INSTALL_SCRIPT_CMD!
+pause
+exit /b 1

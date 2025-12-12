@@ -1,5 +1,4 @@
 @echo off
-chcp 65001 >nul 2>&1
 setlocal enabledelayedexpansion
 
 echo =========================================
@@ -11,10 +10,10 @@ echo.
 set "SCRIPT_DIR=%~dp0"
 set "PROJECT_ROOT=%SCRIPT_DIR%"
 
-:: === Dokumente-Verzeichnis zuverlässig ermitteln ===
+:: === Dokumente-Verzeichnis zuverlaessig ermitteln ===
 echo [1/6] Ermittle Dokumente-Verzeichnis...
 
-:: Registry-Abfrage für Dokumente-Verzeichnis (funktioniert auch mit OneDrive)
+:: Registry-Abfrage fuer Dokumente-Verzeichnis (funktioniert auch mit OneDrive)
 for /f "tokens=2*" %%a in ('reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v Personal 2^>nul ^| find "Personal"') do (
     set "DOCS_DIR=%%b"
 )
@@ -24,22 +23,24 @@ if defined DOCS_DIR (
     call set "DOCS_DIR=!DOCS_DIR!"
 )
 
-:: Finale Überprüfung
+:: Finale Ueberpruefung
 if not defined DOCS_DIR (
-    echo   ✗ [FEHLER] Dokumente-Verzeichnis konnte nicht ermittelt werden!
+    echo.
+    echo   [FEHLER] Dokumente-Verzeichnis konnte nicht ermittelt werden!
     echo   Registry-Abfrage fehlgeschlagen.
     pause
     exit /b 1
 )
 
 if not exist "!DOCS_DIR!" (
-    echo   ✗ [FEHLER] Dokumente-Verzeichnis existiert nicht!
+    echo.
+    echo   [FEHLER] Dokumente-Verzeichnis existiert nicht!
     echo   Erwarteter Pfad: !DOCS_DIR!
     pause
     exit /b 1
 )
 
-echo   ✓ Dokumente-Verzeichnis gefunden: !DOCS_DIR!
+echo   ^[OK^] Dokumente-Verzeichnis gefunden: !DOCS_DIR!
 echo.
 
 :: === Arduino Libraries Zielverzeichnis ===
@@ -53,7 +54,7 @@ echo   - Ziel: !ARDUINO_LIBS!
 :: Überprüfen ob Quellverzeichnis existiert
 if not exist "%SOURCE_LIBS%" (
     echo   [WARNUNG] Quellverzeichnis 'libraries' nicht gefunden!
-    echo   Verzeichnis wird übersprungen.
+    echo   Verzeichnis wird ueberspungen.
     set "LIBS_COPIED=0"
 ) else (
     :: Arduino\libraries Verzeichnis erstellen falls nicht vorhanden
@@ -72,10 +73,10 @@ if not exist "%SOURCE_LIBS%" (
     xcopy "%SOURCE_LIBS%\*" "!ARDUINO_LIBS!\" /E /I /Y /Q >nul 2>&1
     
     if errorlevel 1 (
-        echo   ✗ [FEHLER] Fehler beim Kopieren der Bibliotheken!
+        echo   [FEHLER] Fehler beim Kopieren der Bibliotheken!
         set "LIBS_COPIED=0"
     ) else (
-        echo   ✓ [OK] Bibliotheken erfolgreich kopiert
+        echo   ^[OK^] Bibliotheken erfolgreich kopiert
         set "LIBS_COPIED=1"
     )
 )
@@ -92,7 +93,7 @@ echo   - Ziel: !ARDUINO_IDE_DIR!
 :: Überprüfen ob Quellverzeichnis existiert
 if not exist "%SOURCE_PLUGINS%" (
     echo   [WARNUNG] Quellverzeichnis 'plugins' nicht gefunden!
-    echo   Verzeichnis wird übersprungen.
+    echo   Verzeichnis wird ueberspungen.
     set "PLUGINS_COPIED=0"
 ) else (
     :: .arduinoIDE Verzeichnis erstellen falls nicht vorhanden
@@ -111,10 +112,10 @@ if not exist "%SOURCE_PLUGINS%" (
     xcopy "%SOURCE_PLUGINS%" "!ARDUINO_IDE_DIR!\plugins\" /E /I /Y /Q >nul 2>&1
     
     if errorlevel 1 (
-        echo   ✗ [FEHLER] Fehler beim Kopieren der Plugins!
+        echo   [FEHLER] Fehler beim Kopieren der Plugins!
         set "PLUGINS_COPIED=0"
     ) else (
-        echo   ✓ [OK] Plugins erfolgreich kopiert
+        echo   ^[OK^] Plugins erfolgreich kopiert
         set "PLUGINS_COPIED=1"
     )
 )
@@ -132,7 +133,7 @@ echo   - Ziel: !TARGET_PROJECT!
 :: Überprüfen ob Quellverzeichnis existiert
 if not exist "%SOURCE_PROJECT%" (
     echo   [WARNUNG] Quellverzeichnis '2025-WI-Schnuppertag' nicht gefunden!
-    echo   Verzeichnis wird übersprungen.
+    echo   Verzeichnis wird ueberspungen.
     set "PROJECT_COPIED=0"
 ) else (
     :: Arduino Verzeichnis erstellen falls nicht vorhanden
@@ -146,13 +147,13 @@ if not exist "%SOURCE_PROJECT%" (
         )
     )
 
-    :: Altes Verzeichnis löschen falls vorhanden
+    :: Altes Verzeichnis loeschen falls vorhanden
     if exist "!TARGET_PROJECT!" (
-        echo   - Lösche altes Verzeichnis: !TARGET_PROJECT!
+        echo   - Loesche altes Verzeichnis: !TARGET_PROJECT!
         rmdir /s /q "!TARGET_PROJECT!" 2>nul
         if errorlevel 1 (
-            echo   [FEHLER] Konnte altes Verzeichnis nicht löschen!
-            echo   Stelle sicher, dass keine Dateien geöffnet sind.
+            echo   [FEHLER] Konnte altes Verzeichnis nicht loeschen!
+            echo   Stelle sicher, dass keine Dateien geoeffnet sind.
             pause
             exit /b 1
         )
@@ -163,10 +164,10 @@ if not exist "%SOURCE_PROJECT%" (
     xcopy "%SOURCE_PROJECT%" "!TARGET_PROJECT!\" /E /I /Y /Q >nul 2>&1
     
     if errorlevel 1 (
-        echo   ✗ [FEHLER] Fehler beim Kopieren des Projekt-Verzeichnisses!
+        echo   [FEHLER] Fehler beim Kopieren des Projekt-Verzeichnisses!
         set "PROJECT_COPIED=0"
     ) else (
-        echo   ✓ [OK] Projekt-Verzeichnis erfolgreich kopiert
+        echo   ^[OK^] Projekt-Verzeichnis erfolgreich kopiert
         set "PROJECT_COPIED=1"
     )
 )
@@ -175,7 +176,7 @@ echo.
 :: === Desktop-Dateien kopieren ===
 echo [5/6] Kopiere Desktop-Dateien...
 
-:: Registry-Abfrage für Desktop-Verzeichnis (funktioniert auch mit OneDrive)
+:: Registry-Abfrage fuer Desktop-Verzeichnis (funktioniert auch mit OneDrive)
 for /f "tokens=2*" %%a in ('reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v Desktop 2^>nul ^| find "Desktop"') do (
     set "DESKTOP_DIR=%%b"
 )
@@ -186,22 +187,23 @@ if defined DESKTOP_DIR (
 )
 
 if not defined DESKTOP_DIR (
-    echo   ✗ [FEHLER] Desktop-Verzeichnis konnte nicht ermittelt werden!
+    echo.
+    echo   [FEHLER] Desktop-Verzeichnis konnte nicht ermittelt werden!
     set "DESKTOP_COPIED=0"
     goto :skip_desktop
 )
 
-echo   ✓ Desktop-Verzeichnis gefunden: !DESKTOP_DIR!
+echo   ^[OK^] Desktop-Verzeichnis gefunden: !DESKTOP_DIR!
 
 set "SOURCE_DESKTOP=%SCRIPT_DIR%Desktop"
 
 echo   - Quelle: %SOURCE_DESKTOP%
 echo   - Ziel: !DESKTOP_DIR!
 
-:: Überprüfen ob Quellverzeichnis existiert
+:: Ueberpruefen ob Quellverzeichnis existiert
 if not exist "%SOURCE_DESKTOP%" (
     echo   [WARNUNG] Quellverzeichnis 'Desktop' nicht gefunden!
-    echo   Verzeichnis wird übersprungen.
+    echo   Verzeichnis wird ueberspungen.
     set "DESKTOP_COPIED=0"
 ) else (
     :: Desktop-Verzeichnis sollte existieren, aber sicherheitshalber prüfen
@@ -214,10 +216,10 @@ if not exist "%SOURCE_DESKTOP%" (
         xcopy "%SOURCE_DESKTOP%\*" "!DESKTOP_DIR!\" /E /I /Y /Q >nul 2>&1
         
         if errorlevel 1 (
-            echo   ✗ [FEHLER] Fehler beim Kopieren der Desktop-Dateien!
+            echo   [FEHLER] Fehler beim Kopieren der Desktop-Dateien!
             set "DESKTOP_COPIED=0"
         ) else (
-            echo   ✓ [OK] Desktop-Dateien erfolgreich kopiert
+            echo   ^[OK^] Desktop-Dateien erfolgreich kopiert
             set "DESKTOP_COPIED=1"
         )
     )
@@ -232,11 +234,11 @@ echo   Installation abgeschlossen
 echo =========================================
 echo.
 
-:: Überprüfung der Ergebnisse
+:: Ueberpruefung der Ergebnisse
 set "SUCCESS=1"
 
 if "!LIBS_COPIED!"=="1" (
-    echo ✓ [OK] Bibliotheken: !ARDUINO_LIBS!
+    echo ^[OK^] Bibliotheken: !ARDUINO_LIBS!
     if exist "!ARDUINO_LIBS!" (
         dir "!ARDUINO_LIBS!" /B /A:D 2>nul | find /C /V "" > nul
         if errorlevel 1 (
@@ -248,7 +250,7 @@ if "!LIBS_COPIED!"=="1" (
     )
 ) else (
     if exist "%SOURCE_LIBS%" (
-        echo ✗ [FEHLER] Bibliotheken konnten nicht kopiert werden!
+        echo [FEHLER] Bibliotheken konnten nicht kopiert werden!
         set "SUCCESS=0"
     ) else (
         echo [INFO] Keine Bibliotheken zum Installieren vorhanden
@@ -257,7 +259,7 @@ if "!LIBS_COPIED!"=="1" (
 echo.
 
 if "!PLUGINS_COPIED!"=="1" (
-    echo ✓ [OK] Plugins: !ARDUINO_IDE_DIR!\plugins
+    echo ^[OK^] Plugins: !ARDUINO_IDE_DIR!\plugins
     if exist "!ARDUINO_IDE_DIR!\plugins" (
         dir "!ARDUINO_IDE_DIR!\plugins" /B 2>nul | find /C /V "" > nul
         if errorlevel 1 (
@@ -269,7 +271,7 @@ if "!PLUGINS_COPIED!"=="1" (
     )
 ) else (
     if exist "%SOURCE_PLUGINS%" (
-        echo ✗ [FEHLER] Plugins konnten nicht kopiert werden!
+        echo [FEHLER] Plugins konnten nicht kopiert werden!
         set "SUCCESS=0"
     ) else (
         echo [INFO] Keine Plugins zum Installieren vorhanden
@@ -278,13 +280,13 @@ if "!PLUGINS_COPIED!"=="1" (
 echo.
 
 if "!PROJECT_COPIED!"=="1" (
-    echo ✓ [OK] Projekt: !TARGET_PROJECT!
+    echo ^[OK^] Projekt: !TARGET_PROJECT!
     if exist "!TARGET_PROJECT!" (
         echo      Projekt-Dateien erfolgreich installiert
     )
 ) else (
     if exist "%SOURCE_PROJECT%" (
-        echo ✗ [FEHLER] Projekt-Verzeichnis konnte nicht kopiert werden!
+        echo [FEHLER] Projekt-Verzeichnis konnte nicht kopiert werden!
         set "SUCCESS=0"
     ) else (
         echo [INFO] Kein Projekt-Verzeichnis zum Installieren vorhanden
@@ -293,13 +295,13 @@ if "!PROJECT_COPIED!"=="1" (
 echo.
 
 if "!DESKTOP_COPIED!"=="1" (
-    echo ✓ [OK] Desktop-Dateien: !DESKTOP_DIR!
+    echo ^[OK^] Desktop-Dateien: !DESKTOP_DIR!
     if exist "!DESKTOP_DIR!" (
         echo      Desktop-Dateien erfolgreich kopiert
     )
 ) else (
     if exist "%SOURCE_DESKTOP%" (
-        echo ✗ [FEHLER] Desktop-Dateien konnten nicht kopiert werden!
+        echo [FEHLER] Desktop-Dateien konnten nicht kopiert werden!
         set "SUCCESS=0"
     ) else (
         echo [INFO] Keine Desktop-Dateien zum Kopieren vorhanden
@@ -346,18 +348,18 @@ if "!SUCCESS!"=="0" (
     
     if defined ARDUINO_EXE (
         if exist "!SKETCH_PATH!" (
-            echo   ✓ Arduino IDE gefunden: !ARDUINO_EXE!
-            echo   ✓ Öffne Sketch: 01_Programmieren
+            echo   ^[OK^] Arduino IDE gefunden: !ARDUINO_EXE!
+            echo   ^[OK^] Oeffne Sketch: 01_Programmieren
             echo.
             powershell -WindowStyle Hidden -Command "Start-Process -FilePath '!ARDUINO_EXE!' -ArgumentList '!SKETCH_PATH!'"
         ) else (
-            echo   ⚠ Sketch nicht gefunden: !SKETCH_PATH!
+            echo   [WARNUNG] Sketch nicht gefunden: !SKETCH_PATH!
             echo   Starte Arduino IDE ohne Sketch...
             powershell -WindowStyle Hidden -Command "Start-Process -FilePath '!ARDUINO_EXE!'"
         )
     ) else (
-        echo   ⚠ Arduino IDE nicht gefunden!
-        echo   Bitte installiere die Arduino IDE oder öffne den Sketch manuell.
+        echo   [WARNUNG] Arduino IDE nicht gefunden!
+        echo   Bitte installiere die Arduino IDE oder oeffne den Sketch manuell.
         echo.
     )
     
