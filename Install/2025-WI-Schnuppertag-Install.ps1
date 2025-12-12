@@ -247,19 +247,36 @@ if ($ARDUINO_EXE) {
         Write-Host "  [OK] Oeffne Sketch: 01_Programmieren" -ForegroundColor Green
         Write-Host ""
         Write-Host "  Starte Arduino IDE..." -ForegroundColor Cyan
-        $null = Start-Process -FilePath $ARDUINO_EXE -ArgumentList "`"$SKETCH_PATH`"" -PassThru
+        
+        # Erstelle temporaeres VBScript zum Starten (zuverlaessigste Methode)
+        $tempVbs = Join-Path $env:TEMP "start_arduino.vbs"
+        $vbsContent = @"
+Set objShell = CreateObject("WScript.Shell")
+objShell.Run """$ARDUINO_EXE"" ""$SKETCH_PATH""", 1, False
+"@
+        Set-Content -Path $tempVbs -Value $vbsContent -Force
+        
+        # Starte VBScript und beende sofort
+        Start-Process -FilePath "wscript.exe" -ArgumentList "`"$tempVbs`"" -WindowStyle Hidden
+        
     } else {
         Write-Host "  [WARNUNG] Sketch nicht gefunden: $SKETCH_PATH" -ForegroundColor Yellow
         Write-Host "  Starte Arduino IDE ohne Sketch..."
-        $null = Start-Process -FilePath $ARDUINO_EXE -PassThru
+        
+        $tempVbs = Join-Path $env:TEMP "start_arduino.vbs"
+        $vbsContent = @"
+Set objShell = CreateObject("WScript.Shell")
+objShell.Run """$ARDUINO_EXE""", 1, False
+"@
+        Set-Content -Path $tempVbs -Value $vbsContent -Force
+        Start-Process -FilePath "wscript.exe" -ArgumentList "`"$tempVbs`"" -WindowStyle Hidden
     }
+    
     Write-Host ""
     Write-Host "=========================================" -ForegroundColor Cyan
-    Write-Host "  Installation erfolgreich abgeschlossen!" -ForegroundColor Green
+    Write-Host "  Installation erfolgreich!" -ForegroundColor Green
+    Write-Host "  Arduino IDE wird gestartet..." -ForegroundColor Green
     Write-Host "=========================================" -ForegroundColor Cyan
-    Write-Host ""
-    Write-Host "  Arduino IDE wurde gestartet." -ForegroundColor Green
-    Start-Sleep -Milliseconds 500
 } else {
     Write-Host "  [WARNUNG] Arduino IDE nicht gefunden!" -ForegroundColor Yellow
     Write-Host "  Bitte installiere die Arduino IDE oder oeffne den Sketch manuell."
@@ -268,8 +285,8 @@ if ($ARDUINO_EXE) {
     Write-Host "  Installation abgeschlossen!" -ForegroundColor Green
     Write-Host "=========================================" -ForegroundColor Cyan
     Write-Host ""
-    Start-Sleep -Seconds 3
+    Start-Sleep -Seconds 2
 }
 
-# PowerShell-Prozess beenden und Fenster schliessen
+# Beende sofort
 [Environment]::Exit(0)
