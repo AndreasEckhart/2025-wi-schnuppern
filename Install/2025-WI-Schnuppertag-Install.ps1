@@ -247,11 +247,11 @@ if ($ARDUINO_EXE) {
         Write-Host "  [OK] Oeffne Sketch: 01_Programmieren" -ForegroundColor Green
         Write-Host ""
         Write-Host "  Starte Arduino IDE..." -ForegroundColor Cyan
-        Start-Process -FilePath $ARDUINO_EXE -ArgumentList "`"$SKETCH_PATH`""
+        $null = Start-Process -FilePath $ARDUINO_EXE -ArgumentList "`"$SKETCH_PATH`"" -PassThru
     } else {
         Write-Host "  [WARNUNG] Sketch nicht gefunden: $SKETCH_PATH" -ForegroundColor Yellow
         Write-Host "  Starte Arduino IDE ohne Sketch..."
-        Start-Process -FilePath $ARDUINO_EXE
+        $null = Start-Process -FilePath $ARDUINO_EXE -PassThru
     }
     Write-Host ""
     Write-Host "=========================================" -ForegroundColor Cyan
@@ -259,8 +259,7 @@ if ($ARDUINO_EXE) {
     Write-Host "=========================================" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "  Arduino IDE wurde gestartet." -ForegroundColor Green
-    Write-Host "  Dieses Fenster schliesst sich in 2 Sekunden..." -ForegroundColor Yellow
-    Start-Sleep -Seconds 2
+    Start-Sleep -Milliseconds 500
 } else {
     Write-Host "  [WARNUNG] Arduino IDE nicht gefunden!" -ForegroundColor Yellow
     Write-Host "  Bitte installiere die Arduino IDE oder oeffne den Sketch manuell."
@@ -272,5 +271,5 @@ if ($ARDUINO_EXE) {
     Start-Sleep -Seconds 3
 }
 
-# PowerShell-Fenster beenden
-exit 0
+# PowerShell-Prozess beenden und Fenster schliessen
+[Environment]::Exit(0)
