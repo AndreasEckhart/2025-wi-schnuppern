@@ -92,9 +92,8 @@ if exist "!INSTALL_SCRIPT_PS1!" (
     echo   [OK] PowerShell Install-Script gefunden
     echo   Starte Installation...
     echo.
-    timeout /t 1 /nobreak >nul
-    powershell -ExecutionPolicy Bypass -Command "& '!INSTALL_SCRIPT_PS1!'"
-    exit /b 0
+    start "" powershell -ExecutionPolicy Bypass -NoProfile -File "!INSTALL_SCRIPT_PS1!"
+    exit
 )
 
 :: Fallback auf CMD-Version
@@ -102,9 +101,8 @@ if exist "!INSTALL_SCRIPT_CMD!" (
     echo   [OK] CMD Install-Script gefunden
     echo   Starte Installation...
     echo.
-    timeout /t 1 /nobreak >nul
     start "" "!INSTALL_SCRIPT_CMD!"
-    exit /b 0
+    exit
 )
 
 :: Kein Script gefunden

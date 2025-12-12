@@ -246,22 +246,31 @@ if ($ARDUINO_EXE) {
         Write-Host "  [OK] Arduino IDE gefunden: $ARDUINO_EXE" -ForegroundColor Green
         Write-Host "  [OK] Oeffne Sketch: 01_Programmieren" -ForegroundColor Green
         Write-Host ""
-        Start-Process -FilePath $ARDUINO_EXE -ArgumentList "`"$SKETCH_PATH`"" -WindowStyle Normal
+        Write-Host "  Starte Arduino IDE..." -ForegroundColor Cyan
+        Start-Process -FilePath $ARDUINO_EXE -ArgumentList "`"$SKETCH_PATH`""
     } else {
         Write-Host "  [WARNUNG] Sketch nicht gefunden: $SKETCH_PATH" -ForegroundColor Yellow
         Write-Host "  Starte Arduino IDE ohne Sketch..."
-        Start-Process -FilePath $ARDUINO_EXE -WindowStyle Normal
+        Start-Process -FilePath $ARDUINO_EXE
     }
+    Write-Host ""
+    Write-Host "=========================================" -ForegroundColor Cyan
+    Write-Host "  Installation erfolgreich abgeschlossen!" -ForegroundColor Green
+    Write-Host "=========================================" -ForegroundColor Cyan
+    Write-Host ""
+    Write-Host "  Arduino IDE wurde gestartet." -ForegroundColor Green
+    Write-Host "  Dieses Fenster schliesst sich in 2 Sekunden..." -ForegroundColor Yellow
+    Start-Sleep -Seconds 2
 } else {
     Write-Host "  [WARNUNG] Arduino IDE nicht gefunden!" -ForegroundColor Yellow
     Write-Host "  Bitte installiere die Arduino IDE oder oeffne den Sketch manuell."
     Write-Host ""
+    Write-Host "=========================================" -ForegroundColor Cyan
+    Write-Host "  Installation abgeschlossen!" -ForegroundColor Green
+    Write-Host "=========================================" -ForegroundColor Cyan
+    Write-Host ""
+    Start-Sleep -Seconds 3
 }
 
-Write-Host "=========================================" -ForegroundColor Cyan
-Write-Host "  Installation erfolgreich abgeschlossen!" -ForegroundColor Green
-Write-Host "=========================================" -ForegroundColor Cyan
-Write-Host ""
-
-# PowerShell-Fenster schliesst sich automatisch
+# PowerShell-Fenster beenden
 exit 0
