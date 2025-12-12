@@ -17,7 +17,7 @@ $DOCS_DIR = [Environment]::GetFolderPath("MyDocuments")
 
 if (-not (Test-Path $DOCS_DIR)) {
     Write-Host "  [FEHLER] Dokumente-Verzeichnis nicht gefunden!" -ForegroundColor Red
-    Read-Host "Druecke Enter zum Beenden"
+    Start-Sleep -Seconds 3
     exit 1
 }
 
@@ -115,7 +115,7 @@ if (-not (Test-Path $SOURCE_PROJECT)) {
         } catch {
             Write-Host "  [FEHLER] Konnte altes Verzeichnis nicht loeschen!" -ForegroundColor Red
             Write-Host "  Stelle sicher, dass keine Dateien geoeffnet sind."
-            Read-Host "Druecke Enter zum Beenden"
+            Start-Sleep -Seconds 3
             exit 1
         }
     }
@@ -217,7 +217,7 @@ if (-not $SUCCESS) {
     Write-Host "=========================================" -ForegroundColor Red
     Write-Host "  Installation mit Fehlern beendet!" -ForegroundColor Red
     Write-Host "=========================================" -ForegroundColor Red
-    Read-Host "Druecke Enter zum Beenden"
+    Start-Sleep -Seconds 3
     exit 1
 }
 
@@ -256,12 +256,12 @@ if ($ARDUINO_EXE) {
     Write-Host "  [WARNUNG] Arduino IDE nicht gefunden!" -ForegroundColor Yellow
     Write-Host "  Bitte installiere die Arduino IDE oder oeffne den Sketch manuell."
     Write-Host ""
-    Read-Host "Druecke Enter zum Beenden"
 }
 
 Write-Host "=========================================" -ForegroundColor Cyan
 Write-Host "  Installation erfolgreich abgeschlossen!" -ForegroundColor Green
 Write-Host "=========================================" -ForegroundColor Cyan
+Write-Host ""
 
-Start-Sleep -Seconds 2
+Start-Sleep -Seconds 3
 exit 0
