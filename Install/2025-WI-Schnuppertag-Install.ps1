@@ -263,5 +263,5 @@ Write-Host "  Installation erfolgreich abgeschlossen!" -ForegroundColor Green
 Write-Host "=========================================" -ForegroundColor Cyan
 Write-Host ""
 
-Start-Sleep -Seconds 3
+# PowerShell-Fenster schliesst sich automatisch
 exit 0
