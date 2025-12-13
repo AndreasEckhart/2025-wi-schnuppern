@@ -1,4 +1,4 @@
-# WI-Schnuppertage 2025/2026 - LED-Ring Projekt
+# WI-Schnuppertage 2025/2026 - WI-smartLight Projekt
 
 Willkommen beim Schnupperprojekt der HTL Anichstraße - Abteilung Wirtschaftsingenieure / Betriebsinformatik! In diesem Projekt lernst du die Grundlagen der Programmierung mit einem ESP32-Mikrocontroller und einem LED-Ring mit 24 LEDs.
 
@@ -57,16 +57,28 @@ Willkommen beim Schnupperprojekt der HTL Anichstraße - Abteilung Wirtschaftsing
 
 ### Methode 1: Mit dem Download-Skript (empfohlen)
 
-1. Navigiere zum Ordner `download-project`
-2. Doppelklicke auf **`2025-wi-schnuppern-download.cmd`**
-3. Das Skript lädt automatisch das Projekt herunter und öffnet es in der Arduino IDE
+1. Doppelklicke auf **`2025-wi-schnuppern-download.cmd`** im Projektordner.
+2. Das Skript lädt das GitHub-Archiv (`main.zip`) in deinen **Downloads**-Ordner und entpackt es unter `2025-wi-schnuppern`.
+3. Anschließend startet es automatisch die Installation: Bibliotheken, Plugins und das Projekt werden in deine Benutzerordner kopiert.
+4. Wird die Arduino IDE gefunden, startet sie und öffnet den Sketch **01_Programmieren**.
+
+Hinweise zum Skript:
+- Verwendet `curl` (Fallback: PowerShell `Invoke-WebRequest`) für den Download.
+- Entpackt mit `Expand-Archive` und entfernt ggf. alte Zielordner.
+- Sucht und startet `Install/2025-WI-Schnuppertag-Install.ps1` (Fallback: `.cmd`).
 
 ### Methode 2: Manuell öffnen
 
-1. Öffne die Arduino IDE
-2. Gehe zu **Datei** → **Öffnen**
-3. Navigiere zum Ordner **`Schnuppern`**
-4. Öffne die Datei **`Schnuppern.ino`**
+1. Öffne die Arduino IDE.
+2. Gehe zu **Datei** → **Öffnen**.
+3. Navigiere zu **Dokumente** → **Arduino** → **2025-WI-Schnuppertag** → **01_Programmieren**.
+4. Öffne **`01_Programmieren.ino`**.
+
+Projektstruktur nach Installation:
+- Bibliotheken: `Dokumente/Arduino/libraries` (z. B. Adafruit NeoPixel, ArduinoJson, PubSubClient)
+- Projekt: `Dokumente/Arduino/2025-WI-Schnuppertag` (Unterordner `01_Programmieren`, `02_WI-smartLight`)
+- Arduino IDE Plugins: `%USERPROFILE%/.arduinoIDE/plugins`
+- Desktop-Verknüpfungen: werden nach `Desktop` kopiert
 
 ### Code hochladen
 
@@ -82,8 +94,8 @@ Willkommen beim Schnupperprojekt der HTL Anichstraße - Abteilung Wirtschaftsing
 
 ### Datei-Struktur
 
-- **`Schnuppern.ino`** - Hier programmierst du! Dein Hauptcode.
-- **`helper.h`** - Hilfsfunktionen und Hardware-Setup (NICHT BEARBEITEN!)
+- **`01_Programmieren/01_Programmieren.ino`** – Hier programmierst du! Dein Hauptcode.
+- **`01_Programmieren/helper.h`** – Hilfsfunktionen und Hardware-Setup (NICHT BEARBEITEN!).
 
 ### Die wichtigsten Funktionen
 
@@ -174,7 +186,7 @@ void loop() {
 
 **Lösung:**
 1. Überprüfe, ob alle Bibliotheken installiert sind (Adafruit NeoPixel)
-2. Stelle sicher, dass das richtige Board ausgewählt ist (ESP32 Dev Module)
+2. Stelle sicher, dass das richtige Board ausgewählt ist (LOLIN C3 Mini)
 3. Überprüfe deinen Code auf Tippfehler (Semikolons, Klammern...)
 
 ### Problem: LEDs leuchten nicht
