@@ -85,7 +85,6 @@ echo   Installation starten
 echo =========================================
 
 set "INSTALL_SCRIPT_PS1=!DOWNLOADS_DIR!\%TARGET_DIR%\Install\2025-WI-Schnuppertag-Install.ps1"
-set "INSTALL_SCRIPT_CMD=!DOWNLOADS_DIR!\%TARGET_DIR%\Install\2025-WI-Schnuppertag-Install.cmd"
 
 :: Pruefe PowerShell-Version zuerst
 if exist "!INSTALL_SCRIPT_PS1!" (
@@ -96,19 +95,9 @@ if exist "!INSTALL_SCRIPT_PS1!" (
     exit
 )
 
-:: Fallback auf CMD-Version
-if exist "!INSTALL_SCRIPT_CMD!" (
-    echo   [OK] CMD Install-Script gefunden
-    echo   Starte Installation...
-    echo.
-    start "" "!INSTALL_SCRIPT_CMD!"
-    exit
-)
-
 :: Kein Script gefunden
 echo   [FEHLER] Install-Script nicht gefunden!
 echo   Gesucht:
 echo   - !INSTALL_SCRIPT_PS1!
-echo   - !INSTALL_SCRIPT_CMD!
 pause
 exit /b 1
