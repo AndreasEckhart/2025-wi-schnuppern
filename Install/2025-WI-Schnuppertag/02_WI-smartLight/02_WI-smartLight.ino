@@ -109,7 +109,7 @@ bool onlineStatus = false;
 // DEIN NAME - ÄNDERE DIESEN WERT!
 // Wird im Access Point Namen und Webinterface angezeigt
 String getDeinName() {
-  String deinName = "Andreas";  // ändere hier deinen Namen
+  String deinName = "Vorname";  // ändere hier deinen Namen
   return deinName;
 }
 
