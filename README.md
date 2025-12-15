@@ -2,6 +2,30 @@
 
 Willkommen beim Schnupperprojekt der HTL Anichstraße - Abteilung Wirtschaftsingenieure / Betriebsinformatik! In diesem Projekt lernst du die Grundlagen der Programmierung mit einem ESP32-Mikrocontroller und einem LED-Ring mit 24 LEDs.
 
+---
+
+## 📚 Inhaltsverzeichnis
+
+1. [📋 Was brauchst du?](#-was-brauchst-du)
+2. [🔧 Installation - Schritt für Schritt](#-installation---schritt-für-schritt)
+   - [Schritt 1: Arduino IDE installieren](#schritt-1-arduino-ide-installieren)
+   - [Schritt 2: ESP32 Board Support installieren](#schritt-2-esp32-board-support-installieren)
+   - [Schritt 3: Board auswählen](#schritt-3-board-auswählen)
+   - [Schritt 4: Adafruit NeoPixel Bibliothek installieren](#schritt-4-adafruit-neopixel-bibliothek-installieren)
+3. [🚀 Projekt herunterladen und installieren](#-projekt-herunterladen-und-installieren)
+   - [Schritt 1: Download-Skript von GitHub herunterladen](#schritt-1-download-skript-von-github-herunterladen)
+   - [Schritt 2: Download-Skript ausführen](#schritt-2-download-skript-ausführen)
+   - [Schritt 3: Nach der Installation](#schritt-3-nach-der-installation)
+4. [🚀 Projekt öffnen und hochladen](#-projekt-öffnen-und-hochladen)
+5. [📝 Programmieren lernen](#-programmieren-lernen)
+   - [Die wichtigsten Funktionen](#die-wichtigsten-funktionen)
+   - [Beispiel-Code: Lauflicht](#beispiel-code-lauflicht)
+6. [❓ Häufige Probleme und Lösungen](#-häufige-probleme-und-lösungen)
+7. [📚 Weitere Ressourcen](#-weitere-ressourcen)
+8. [👨‍🏫 Projekt-Info](#-projekt-info)
+
+---
+
 ## 📋 Was brauchst du?
 
 ### Hardware
@@ -53,19 +77,69 @@ Willkommen beim Schnupperprojekt der HTL Anichstraße - Abteilung Wirtschaftsing
 
 ---
 
+## 🚀 Projekt herunterladen und installieren
+
+### Schritt 1: Download-Skript von GitHub herunterladen
+
+**Für absolute Anfänger - so kommst du an die Datei:**
+
+> **💡 Wichtig:** Wenn du das Download-Skript ausführst, werden **alle benötigten Bibliotheken und Dateien automatisch installiert**! Du musst dann **Schritt 4 (Adafruit NeoPixel Bibliothek)** aus der obigen Anleitung **nicht mehr manuell durchführen**, da dies bereits vom Skript erledigt wird. Die Arduino IDE und ESP32 Board Support (Schritte 1-3) sollten jedoch vorher installiert sein.
+
+1. Öffne deinen Browser (Chrome, Firefox, Edge...)
+2. Gehe zu: **https://github.com/AndreasEckhart/2025-wi-schnuppern**
+3. Klicke oben rechts auf den grünen Button **"<> Code"**
+4. Im aufklappenden Menü: Klicke auf **"Download ZIP"**
+5. Speichere die ZIP-Datei (sie heißt `2025-wi-schnuppern-main.zip`)
+6. Öffne deinen **Downloads**-Ordner
+7. **Rechtsklick** auf die ZIP-Datei → **"Alle extrahieren..."**
+8. Klicke auf **"Extrahieren"** (Standard-Einstellungen sind okay)
+9. Es wird ein neuer Ordner **`2025-wi-schnuppern-main`** erstellt
+
+**Alternative - nur die Download-Datei herunterladen:**
+
+1. Gehe zu: **https://github.com/AndreasEckhart/2025-wi-schnuppern**
+2. Klicke in der Dateiliste auf **`2025-wi-schnuppern-download.cmd`**
+3. Klicke oben rechts auf das **Download-Symbol** (Pfeil nach unten) oder **"Raw"**
+4. Wenn sich die Datei im Browser öffnet:
+   - **Rechtsklick** → **"Seite speichern unter..."** oder **Strg+S**
+   - Speichere sie als `2025-wi-schnuppern-download.cmd` (achte auf die Endung `.cmd`)
+5. Die Datei landet in deinem **Downloads**-Ordner
+
+### Schritt 2: Download-Skript ausführen
+
+1. Öffne deinen **Downloads**-Ordner (Tastenkombination: **Windows-Taste + E**, dann links auf "Downloads")
+2. Falls du die ZIP-Datei heruntergeladen hast: Öffne den Ordner **`2025-wi-schnuppern-main`**
+3. Suche die Datei **`2025-wi-schnuppern-download.cmd`**
+4. **Doppelklick** auf die Datei
+
+**Was passiert jetzt automatisch?**
+
+5. Ein schwarzes Fenster (Kommandozeile) öffnet sich
+6. Das Skript lädt das komplette GitHub-Projekt herunter (`main.zip`)
+7. Die ZIP-Datei wird automatisch in deinen **Downloads**-Ordner entpackt
+8. Die Installation startet automatisch:
+   - Arduino-Bibliotheken werden nach `Dokumente/Arduino/libraries` kopiert
+   - Das Projekt wird nach `Dokumente/Arduino/2025-WI-Schnuppertag` kopiert
+   - Arduino IDE Plugins werden installiert
+   - Desktop-Verknüpfungen werden erstellt
+9. Die Arduino IDE startet automatisch und öffnet den Sketch **01_Programmieren**
+
+**Wichtig:** Wenn ein Sicherheitshinweis erscheint ("Windows hat diesen PC geschützt"), klicke auf **"Weitere Informationen"** und dann **"Trotzdem ausführen"**.
+
+### Schritt 3: Nach der Installation
+
+Nach erfolgreicher Installation findest du:
+- **Auf dem Desktop:** Ordner `WI-Schnuppern-2025` mit Verknüpfungen und Anleitungen
+- **In Dokumenten:** `Arduino/2025-WI-Schnuppertag` mit deinen Projekten
+- **Arduino IDE:** sollte automatisch gestartet sein mit dem Sketch `01_Programmieren`
+
+---
+
 ## 🚀 Projekt öffnen und hochladen
 
-### Methode 1: Mit dem Download-Skript (empfohlen)
+### Methode 1: Automatisch (nach Installation)
 
-1. Doppelklicke auf **`2025-wi-schnuppern-download.cmd`** im Projektordner.
-2. Das Skript lädt das GitHub-Archiv (`main.zip`) in deinen **Downloads**-Ordner und entpackt es unter `2025-wi-schnuppern`.
-3. Anschließend startet es automatisch die Installation: Bibliotheken, Plugins und das Projekt werden in deine Benutzerordner kopiert.
-4. Wird die Arduino IDE gefunden, startet sie und öffnet den Sketch **01_Programmieren**.
-
-Hinweise zum Skript:
-- Verwendet `curl` (Fallback: PowerShell `Invoke-WebRequest`) für den Download.
-- Entpackt mit `Expand-Archive` und entfernt ggf. alte Zielordner.
-- Sucht und startet `Install/2025-WI-Schnuppertag-Install.ps1` (Fallback: `.cmd`).
+Wenn du das Download-Skript ausgeführt hast, ist die Arduino IDE bereits geöffnet mit dem richtigen Sketch. Überspringe zu **"Code hochladen"** weiter unten.
 
 ### Methode 2: Manuell öffnen
 
