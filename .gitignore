@@ -1,0 +1,41 @@
+# VS Code
+.vscode/
+*.code-workspace
+
+# Arduino IDE
+.DS_Store
+*.swp
+*~
+.classpath
+.project
+.settings/
+*.tmproj
+*.tmproject
+tmtags
+
+# Build directories
+build/
+dist/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+
+# OS Files
+Thumbs.db
+.DS_Store
+
+# IDE and Editor
+*.sublime-project
+*.sublime-workspace
+.idea/
+
+# Node (if applicable)
+node_modules/
+package-lock.json
+yarn.lock

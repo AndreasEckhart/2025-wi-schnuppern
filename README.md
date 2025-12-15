@@ -16,7 +16,7 @@ Willkommen beim Schnupperprojekt der HTL Anichstraße - Abteilung Wirtschaftsing
    - [Schritt 2: ESP32 Board Support installieren](#schritt-2-esp32-board-support-installieren)
    - [Schritt 3: Board auswählen](#schritt-3-board-auswählen)
    - [Schritt 4: Adafruit NeoPixel Bibliothek installieren](#schritt-4-adafruit-neopixel-bibliothek-installieren)
-3. [🚀 Projekt herunterladen und installieren](#3--projekt-herunterladen-und-installieren)
+3. [🚀 Projekt herunterladen und installieren (Windows, Linux & macOS)](#3--projekt-herunterladen-und-installieren)
    - [Schritt 1: Download-Skript von GitHub herunterladen](#schritt-1-download-skript-von-github-herunterladen)
    - [Schritt 2: Download-Skript ausführen](#schritt-2-download-skript-ausführen)
    - [Schritt 3: Nach der Installation](#schritt-3-nach-der-installation)
@@ -83,9 +83,11 @@ Willkommen beim Schnupperprojekt der HTL Anichstraße - Abteilung Wirtschaftsing
 
 ## 3. 🚀 Projekt herunterladen und installieren
 
+> 💻 **Hinweis für Linux und macOS Nutzer:** Die folgenden Schritte sind primär für Windows gedacht. Linux und macOS Nutzer finden eine Anleitung [hier ↓](#-installation-für-linux-und-macos).
+
 ### Schritt 1: Download-Skript von GitHub herunterladen
 
-**Für absolute Anfänger - so kommst du an die Datei:**
+**Empfohlen - so kommst du an die Datei:**
 
 > **💡 Wichtig:** Wenn du das Download-Skript ausführst, werden **alle benötigten Bibliotheken und Dateien automatisch installiert**! Du musst dann **Schritt 4 (Adafruit NeoPixel Bibliothek)** aus der obigen Anleitung **nicht mehr manuell durchführen**, da dies bereits vom Skript erledigt wird. Die Arduino IDE und ESP32 Board Support (Schritte 1-3) sollten jedoch vorher installiert sein.
 
@@ -139,6 +141,52 @@ Nach erfolgreicher Installation findest du:
 
 ---
 
+### 💻 Installation für Linux und macOS
+
+Das Download-Skript ist primär für Windows gedacht. Für Linux und macOS-Nutzer:
+
+#### **Linux (Ubuntu/Debian basiert):**
+
+1. Öffne ein Terminal
+2. Clone das Repository:
+   ```bash
+   git clone https://github.com/AndreasEckhart/2025-wi-schnuppern.git
+   cd 2025-wi-schnuppern
+   ```
+3. Oder lade die ZIP-Datei herunter und entpacke sie:
+   ```bash
+   cd ~/Downloads
+   unzip 2025-wi-schnuppern-main.zip
+   cd 2025-wi-schnuppern-main
+   ```
+4. Kopiere die Bibliotheken und Plugins manuell:
+   ```bash
+   cp -r Install/libraries/* ~/Arduino/libraries/
+   cp -r Install/2025-WI-Schnuppertag ~/Documents/Arduino/
+   mkdir -p ~/.arduinoIDE/plugins
+   cp -r Install/plugins ~/.arduinoIDE/
+   ```
+
+#### **macOS:**
+
+1. Öffne Terminal (Finder → Programme → Dienstprogramme → Terminal)
+2. Clone das Repository oder lade die ZIP herunter (wie oben unter Linux)
+3. Kopiere die Dateien manuell:
+   ```bash
+   cp -r Install/libraries/* ~/Documents/Arduino/libraries/
+   cp -r Install/2025-WI-Schnuppertag ~/Documents/Arduino/
+   mkdir -p ~/Library/Arduino15/plugins
+   cp -r Install/plugins ~/Library/Arduino15/
+   ```
+
+**Hinweis:** Stelle sicher, dass folgende Ordner existieren:
+- `~/Documents/Arduino/` (unter macOS: `~/Documents/Arduino/`)
+- `~/Arduino/libraries/` (Linux)
+
+Danach öffne die Arduino IDE manuell und öffne das Projekt über **Datei** → **Öffnen** → navigiere zu `2025-WI-Schnuppertag` → `01_Programmieren`.
+
+---
+
 ## 4. 🚀 Projekt öffnen und hochladen
 
 ### Methode 1: Automatisch (nach Installation)
@@ -154,7 +202,9 @@ Wenn du das Download-Skript ausgeführt hast, ist die Arduino IDE bereits geöff
 
 Projektstruktur nach Installation:
 - Bibliotheken: `Dokumente/Arduino/libraries` (z. B. Adafruit NeoPixel, ArduinoJson, PubSubClient)
-- Projekt: `Dokumente/Arduino/2025-WI-Schnuppertag` (Unterordner `01_Programmieren`, `02_WI-smartLight`)
+- Projekt: `Dokumente/Arduino/2025-WI-Schnuppertag` mit zwei Unterordnern:
+  - **`01_Programmieren`** – Programmierübungen zum Kennenlernen des LED-Rings
+  - **`02_WI-smartLight`** – Code für das intelligente IoT-Gerät WI-smartLight
 - Arduino IDE Plugins: `%USERPROFILE%/.arduinoIDE/plugins`
 - Desktop-Verknüpfungen: werden nach `Desktop` kopiert
 
@@ -172,8 +222,15 @@ Projektstruktur nach Installation:
 
 ### Datei-Struktur
 
-- **`01_Programmieren/01_Programmieren.ino`** – Hier programmierst du! Dein Hauptcode.
-- **`01_Programmieren/helper.h`** – Hilfsfunktionen und Hardware-Setup (NICHT BEARBEITEN!).
+Das Projekt enthält zwei Hauptordner:
+
+**📁 01_Programmieren** – Programmierübungen für Anfänger:
+- **`01_Programmieren.ino`** – Hier programmierst du! Dein Hauptcode für erste Übungen mit dem LED-Ring.
+- **`helper.h`** – Hilfsfunktionen und Hardware-Setup (NICHT BEARBEITEN!).
+
+**📁 02_WI-smartLight** – Intelligentes IoT-Gerät:
+- **`WI-smartLight.ino`** – Vollständiger Code für das WI-smartLight IoT-Gerät mit Web-Interface.
+- **`data/`** – Web-Interface Dateien (HTML, CSS, JavaScript) für die Steuerung über WLAN.
 
 ### Die wichtigsten Funktionen
 
