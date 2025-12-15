@@ -2,7 +2,7 @@
 
 Willkommen beim Schnupperprojekt der HTL Anichstraße - Abteilung Wirtschaftsingenieure / Betriebsinformatik! In diesem Projekt lernst du die Grundlagen der Programmierung mit einem ESP32-Mikrocontroller und einem LED-Ring mit 24 LEDs.
 
-<img width="512" height="494" alt="WI_smartLight" src="https://github.com/user-attachments/assets/022d695d-0bb5-44d9-b165-b75d83b62885" />
+<img width="250" height="250" alt="WI_smartLight" src="https://github.com/user-attachments/assets/022d695d-0bb5-44d9-b165-b75d83b62885" />
 
 ---
 
