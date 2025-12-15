@@ -10,27 +10,27 @@ Willkommen beim Schnupperprojekt der HTL Anichstraße - Abteilung Wirtschaftsing
 
 ## 📚 Inhaltsverzeichnis
 
-1. [📋 Was brauchst du?](#-was-brauchst-du)
-2. [🔧 Installation - Schritt für Schritt](#-installation---schritt-für-schritt)
+1. [📋 Was brauchst du?](#1--was-brauchst-du)
+2. [🔧 Installation - Schritt für Schritt](#2--installation---schritt-für-schritt)
    - [Schritt 1: Arduino IDE installieren](#schritt-1-arduino-ide-installieren)
    - [Schritt 2: ESP32 Board Support installieren](#schritt-2-esp32-board-support-installieren)
    - [Schritt 3: Board auswählen](#schritt-3-board-auswählen)
    - [Schritt 4: Adafruit NeoPixel Bibliothek installieren](#schritt-4-adafruit-neopixel-bibliothek-installieren)
-3. [🚀 Projekt herunterladen und installieren](#-projekt-herunterladen-und-installieren)
+3. [🚀 Projekt herunterladen und installieren](#3--projekt-herunterladen-und-installieren)
    - [Schritt 1: Download-Skript von GitHub herunterladen](#schritt-1-download-skript-von-github-herunterladen)
    - [Schritt 2: Download-Skript ausführen](#schritt-2-download-skript-ausführen)
    - [Schritt 3: Nach der Installation](#schritt-3-nach-der-installation)
-4. [🚀 Projekt öffnen und hochladen](#-projekt-öffnen-und-hochladen)
-5. [📝 Programmieren lernen](#-programmieren-lernen)
+4. [🚀 Projekt öffnen und hochladen](#4--projekt-öffnen-und-hochladen)
+5. [📝 Programmieren lernen](#5--programmieren-lernen)
    - [Die wichtigsten Funktionen](#die-wichtigsten-funktionen)
    - [Beispiel-Code: Lauflicht](#beispiel-code-lauflicht)
-6. [❓ Häufige Probleme und Lösungen](#-häufige-probleme-und-lösungen)
-7. [📚 Weitere Ressourcen](#-weitere-ressourcen)
-8. [👨‍🏫 Projekt-Info](#-projekt-info)
+6. [❓ Häufige Probleme und Lösungen](#6--häufige-probleme-und-lösungen)
+7. [📚 Weitere Ressourcen](#7--weitere-ressourcen)
+8. [👨‍🏫 Projekt-Info](#8--projekt-info)
 
 ---
 
-## 📋 Was brauchst du?
+## 1. 📋 Was brauchst du?
 
 ### Hardware
 - **WI-smartLight Platine mit ESP32-Mikrocontroller und LED Ring** (mit USB-C-Kabel)
@@ -41,7 +41,7 @@ Willkommen beim Schnupperprojekt der HTL Anichstraße - Abteilung Wirtschaftsing
 
 ---
 
-## 🔧 Installation - Schritt für Schritt
+## 2. 🔧 Installation - Schritt für Schritt
 
 ### Schritt 1: Arduino IDE installieren
 
@@ -81,7 +81,7 @@ Willkommen beim Schnupperprojekt der HTL Anichstraße - Abteilung Wirtschaftsing
 
 ---
 
-## 🚀 Projekt herunterladen und installieren
+## 3. 🚀 Projekt herunterladen und installieren
 
 ### Schritt 1: Download-Skript von GitHub herunterladen
 
@@ -139,7 +139,7 @@ Nach erfolgreicher Installation findest du:
 
 ---
 
-## 🚀 Projekt öffnen und hochladen
+## 4. 🚀 Projekt öffnen und hochladen
 
 ### Methode 1: Automatisch (nach Installation)
 
@@ -168,7 +168,7 @@ Projektstruktur nach Installation:
 
 ---
 
-## 📝 Programmieren lernen
+## 5. 📝 Programmieren lernen
 
 ### Datei-Struktur
 
@@ -250,7 +250,7 @@ void loop() {
 
 ---
 
-## ❓ Häufige Probleme und Lösungen
+## 6. ❓ Häufige Probleme und Lösungen
 
 ### Problem: "Port not found" oder kein COM-Port sichtbar
 
@@ -290,7 +290,7 @@ void loop() {
 
 ---
 
-## 📚 Weitere Ressourcen
+## 7. 📚 Weitere Ressourcen
 
 - **Arduino Referenz:** https://www.arduino.cc/reference/de/
 - **Adafruit NeoPixel Guide:** https://learn.adafruit.com/adafruit-neopixel-uberguide
@@ -298,7 +298,7 @@ void loop() {
 
 ---
 
-## 👨‍🏫 Projekt-Info
+## 8. 👨‍🏫 Projekt-Info
 
 **HTL Anichstraße, Innsbruck**  
 Wirtschaftsingenieure - Betriebsinformatik  
