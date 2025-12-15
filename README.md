@@ -38,7 +38,7 @@ Willkommen beim Schnupperprojekt der HTL Anichstraße - Abteilung Wirtschaftsing
 ### Software
 - **Arduino IDE** (Version 2.x empfohlen)
 - **USB-Treiber** für ESP32 (normalerweise automatisch installiert)
-- **WI-smartLight - Leitfaden**: https://www.canva.com/design/DAG4TvWC8oM/0WDeYfE1SxNzTrlonSjVjg/view?utm_content=DAG4TvWC8oM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h19186fe88a
+- **WI-smartLight - Ablauf**: https://www.canva.com/design/DAG4TvWC8oM/0WDeYfE1SxNzTrlonSjVjg/view?utm_content=DAG4TvWC8oM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h19186fe88a
 
 ---
 
@@ -223,7 +223,7 @@ Projektstruktur nach Installation:
 
 ### Datei-Struktur
 
-Das Projekt enthält zwei Hauptordner:
+Das Projekt enthält drei Hauptordner:
 
 **📁 01_Programmieren** – Programmierübungen für Anfänger:
 - **`01_Programmieren.ino`** – Hier programmierst du! Dein Hauptcode für erste Übungen mit dem LED-Ring.
@@ -232,6 +232,16 @@ Das Projekt enthält zwei Hauptordner:
 **📁 02_WI-smartLight** – Intelligentes IoT-Gerät:
 - **`WI-smartLight.ino`** – Vollständiger Code für das WI-smartLight IoT-Gerät mit Web-Interface.
 - **`data/`** – Web-Interface Dateien (HTML, CSS, JavaScript) für die Steuerung über WLAN.
+
+**📁 03_Musterlösungen** – Beispiel-Lösungen und Inspiration:
+- Verschiedene Musterlösungen für Programmieraufgaben mit dem LED-Ring.
+- Nutze diese als Inspiration, aber probiere zuerst selbst!
+
+---
+
+> 💡 **Hinweis zu Musterlösungen:** Im Projekt findest du Beispiele und Musterlösungen für verschiedene Programmieraufgaben. Diese dienen als Orientierung und Inspiration für deine eigenen Experimente. Probiere zuerst selbst aus, bevor du dir die Lösungen ansiehst – so lernst du am meisten!
+
+---
 
 ### Die wichtigsten Funktionen
 
