@@ -38,6 +38,7 @@ Willkommen beim Schnupperprojekt der HTL Anichstraße - Abteilung Wirtschaftsing
 ### Software
 - **Arduino IDE** (Version 2.x empfohlen)
 - **USB-Treiber** für ESP32 (normalerweise automatisch installiert)
+- **WI-smartLight - Leitfaden**: https://www.canva.com/design/DAG4TvWC8oM/0WDeYfE1SxNzTrlonSjVjg/view?utm_content=DAG4TvWC8oM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h19186fe88a
 
 ---
 
