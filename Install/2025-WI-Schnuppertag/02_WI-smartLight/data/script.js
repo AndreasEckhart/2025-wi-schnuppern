@@ -359,7 +359,7 @@ async function handleWiFiSubmit(e) {
                     // Fallback: Reload der aktuellen Seite
                     window.location.href = window.location.pathname;
                 }
-            }, 3000);
+            }, 8000);
         } else {
             showMessage('Fehler beim Speichern der WLAN-Konfiguration', 'error');
         }
