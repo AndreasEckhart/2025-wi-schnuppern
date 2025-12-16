@@ -24,83 +24,18 @@ void setup() {
 // Loop-Funktion - wird ununterbrochen ausgeführt
 void loop() {
     // hier kommt der Effekt-Code hin
-    // SOS Morsecode: ... --- ...
-    // kurz (blau) = 200ms, lang (rot) = 750ms
-    
     int rot = ring.Color(255, 0, 0);
+    int gruen = ring.Color(0, 255, 0);
     int blau = ring.Color(0, 0, 255);
+    int orange = ring.Color(255, 165, 0);
+    int magenta = ring.Color(255, 0, 255);
 
-    // S: kurz-kurz-kurz (...)
-    ring.fill(blau);
+    ring.fill(rot, 0, 6 ); // erste 6 LEDs rot
+    ring.fill(gruen, 6, 6 ); // nächste 6 LEDs grün
+    ring.fill(blau, 12, 6 ); // nächste 6 LEDs blau
+    ring.fill(magenta, 18, 6 ); // letzte 6 LEDs magenta
     ring.show();
-    delay(200);
-    ring.clear();
-    ring.show();
-    delay(200);
-    
-    ring.fill(blau);
-    ring.show();
-    delay(200);
-    ring.clear();
-    ring.show();
-    delay(200);
-    
-    ring.fill(blau);
-    ring.show();
-    delay(200);
-    ring.clear();
-    ring.show();
-    delay(200);
-    
-    delay(400); // Pause zwischen Buchstaben
-    
-    // O: lang-lang-lang (---)
-    ring.fill(rot);
-    ring.show();
-    delay(750);
-    ring.clear();
-    ring.show();
-    delay(200);
-    
-    ring.fill(rot);
-    ring.show();
-    delay(750);
-    ring.clear();
-    ring.show();
-    delay(200);
-    
-    ring.fill(rot);
-    ring.show();
-    delay(750);
-    ring.clear();
-    ring.show();
-    delay(200);
-    
-    delay(400); // Pause zwischen Buchstaben
-    
-    // S: kurz-kurz-kurz (...)
-    ring.fill(blau);
-    ring.show();
-    delay(200);
-    ring.clear();
-    ring.show();
-    delay(200);
-    
-    ring.fill(blau);
-    ring.show();
-    delay(200);
-    ring.clear();
-    ring.show();
-    delay(200);
-    
-    ring.fill(blau);
-    ring.show();
-    delay(200);
-    ring.clear();
-    ring.show();
-    delay(200);
-    
-    delay(1000); // Pause vor Wiederholung
+  
 }
 
 

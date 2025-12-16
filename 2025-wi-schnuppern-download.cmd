@@ -46,13 +46,13 @@ if errorlevel 1 (
     echo   Curl fehlgeschlagen, versuche PowerShell...
     powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest -Uri '%ZIP_URL%' -OutFile '%ZIP_FILE%' -UseBasicParsing"
     if errorlevel 1 (
-        echo   ✗ [FEHLER] Download fehlgeschlagen!
+        echo   - [FEHLER] Download fehlgeschlagen!
         pause
         exit /b 1
     )
 )
 
-echo   ✓ Download erfolgreich
+echo   + Download erfolgreich
 echo.
 echo =========================================
 echo   ZIP entpacken

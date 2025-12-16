@@ -31,10 +31,20 @@ void loop() {
     int magenta = ring.Color(255, 0, 255);
 
     ring.fill(rot, 0, 6 ); // erste 6 LEDs rot
+    ring.show();
+    delay(500);
+    
     ring.fill(gruen, 6, 6 ); // nächste 6 LEDs grün
+    ring.show();
+    delay(500);
+    
     ring.fill(blau, 12, 6 ); // nächste 6 LEDs blau
+    ring.show();
+    delay(500);
+    
     ring.fill(magenta, 18, 6 ); // letzte 6 LEDs magenta
     ring.show();
+    delay(500);
   
 }
 

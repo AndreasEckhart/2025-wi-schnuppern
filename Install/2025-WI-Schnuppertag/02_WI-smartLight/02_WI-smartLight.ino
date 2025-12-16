@@ -109,7 +109,7 @@ bool onlineStatus = false;
 // DEIN NAME - ÄNDERE DIESEN WERT!
 // Wird im Access Point Namen und Webinterface angezeigt
 String getDeinName() {
-  String deinName = "Vorname";  // ändere hier deinen Namen
+  String deinName = "deinName";  // ändere hier deinen Vornamen
   return deinName;
 }
 
@@ -238,14 +238,14 @@ void loadConfig() {
   preferences.begin("config", false);
   
   wifi_enabled = preferences.getBool("wifi_enabled", false);
-  wifi_ssid = preferences.getString("wifi_ssid", "");
-  wifi_password = preferences.getString("wifi_pass", "");
+  wifi_ssid = preferences.getString("wifi_ssid", "WI-Schnuppertag");
+  wifi_password = preferences.getString("wifi_pass", "Informatik@CCA");
   
   mqtt_server = preferences.getString("mqtt_server", mqtt_server);
   mqtt_port = preferences.getInt("mqtt_port", 8883);
   mqtt_user = preferences.getString("mqtt_user", mqtt_user);
   mqtt_password = preferences.getString("mqtt_pass", mqtt_password);
-  mqtt_topic = preferences.getString("mqtt_topic", "esp32/status");
+  mqtt_topic = preferences.getString("mqtt_topic", "schnuppern");
   mqtt_enabled = preferences.getBool("mqtt_enabled", false);
   
   int savedEffect = preferences.getInt("effect", 0);
@@ -893,6 +893,11 @@ void handleWiFiConfig() {
   JsonDocument response;
   response["success"] = true;
   response["message"] = "WiFi konfiguriert";
+  
+  // Füge Redirect-URL zum mDNS-Hostnamen hinzu (nach Neustart)
+  if (wifi_enabled && hostname.length() > 0) {
+    response["redirect"] = "http://" + hostname + ".local/";
+  }
   
   String responseStr;
   serializeJson(response, responseStr);

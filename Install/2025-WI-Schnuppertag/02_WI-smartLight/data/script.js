@@ -352,8 +352,11 @@ async function handleWiFiSubmit(e) {
         if (result.success) {
             showMessage('WLAN-Konfiguration gespeichert. smartLight wird neu gestartet...', 'success');
             setTimeout(() => {
-                if (data.ssid) {
-                    //window.location.href = 'http://smartlight.local';
+                // Wenn ein mDNS-Redirect-Link vorhanden ist, nutze diesen
+                if (result.redirect) {
+                    window.location.href = result.redirect;
+                } else if (data.ssid) {
+                    // Fallback: Reload der aktuellen Seite
                     window.location.href = window.location.pathname;
                 }
             }, 3000);

@@ -146,6 +146,18 @@ if (-not (Test-Path $SOURCE_DESKTOP)) {
     Write-Host "  [WARNUNG] Quellverzeichnis 'Desktop' nicht gefunden!" -ForegroundColor Yellow
     Write-Host "  Verzeichnis wird uebersprungen."
 } else {
+    # Falls der Zielordner schon existiert (z. B. WI-Schnuppern-2025), vorher aufraeumen
+    $TARGET_DESKTOP_FOLDER = Join-Path $DESKTOP_DIR "WI-Schnuppern-2025"
+    if (Test-Path $TARGET_DESKTOP_FOLDER) {
+        Write-Host "  - Entferne alten Desktop-Ordner: $TARGET_DESKTOP_FOLDER"
+        try {
+            Remove-Item -Path $TARGET_DESKTOP_FOLDER -Recurse -Force -ErrorAction Stop
+        } catch {
+            Write-Host "  [FEHLER] Konnte alten Desktop-Ordner nicht loeschen!" -ForegroundColor Red
+            Write-Host "  Stelle sicher, dass keine Dateien geoeffnet sind."
+        }
+    }
+
     Write-Host "  - Kopiere Desktop-Dateien..."
     try {
         Copy-Item -Path "$SOURCE_DESKTOP\*" -Destination $DESKTOP_DIR -Recurse -Force -ErrorAction Stop
