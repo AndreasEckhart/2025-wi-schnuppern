@@ -351,15 +351,39 @@ async function handleWiFiSubmit(e) {
         
         if (result.success) {
             showMessage('WLAN-Konfiguration gespeichert. smartLight wird neu gestartet...', 'success');
-            setTimeout(() => {
-                // Wenn ein mDNS-Redirect-Link vorhanden ist, nutze diesen
+            
+            // Retry-Mechanismus für Redirect
+            const redirectUrl = result.redirect || window.location.pathname;
+            let retryCount = 0;
+            const maxRetries = 6; // 6 Versuche = 30 Sekunden maximal
+            
+            const tryRedirect = () => {
+                retryCount++;
+                
                 if (result.redirect) {
-                    window.location.href = result.redirect;
-                } else if (data.ssid) {
-                    // Fallback: Reload der aktuellen Seite
-                    window.location.href = window.location.pathname;
+                    // Bei mDNS-Redirect: erst prüfen, ob erreichbar
+                    fetch(redirectUrl, { method: 'HEAD', mode: 'no-cors' })
+                        .then(() => {
+                            // Erfolgreich -> redirect
+                            window.location.href = redirectUrl;
+                        })
+                        .catch(() => {
+                            // Noch nicht erreichbar
+                            if (retryCount < maxRetries) {
+                                setTimeout(tryRedirect, 5000);
+                            } else {
+                                // Nach max. Versuchen: trotzdem versuchen
+                                window.location.href = redirectUrl;
+                            }
+                        });
+                } else {
+                    // Fallback ohne mDNS: direkter Reload nach 5s
+                    window.location.href = redirectUrl;
                 }
-            }, 8000);
+            };
+            
+            // Ersten Versuch nach 5 Sekunden starten
+            setTimeout(tryRedirect, 5000);
         } else {
             showMessage('Fehler beim Speichern der WLAN-Konfiguration', 'error');
         }
