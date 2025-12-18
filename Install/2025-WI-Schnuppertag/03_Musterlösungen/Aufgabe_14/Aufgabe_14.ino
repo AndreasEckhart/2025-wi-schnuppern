@@ -23,7 +23,7 @@ void setup() {
 // Loop-Funktion - wird ununterbrochen ausgeführt
 void loop() {
     if (updateErforderlich()) {
-        deinEffekt14(step); // deinen neuen Farbeffekt aufrufen
+        deinEffekt1(step); // deinen neuen Farbeffekt aufrufen
         ring.show();        // Änderungen anzeigen
     }
 }
@@ -32,7 +32,7 @@ void loop() {
  * Cooler Farbeffekt: Doppel-Komet mit Ausklang
  * Zwei Kometen laufen gegeneinander, haben farbige Schweife und atmen in der Helligkeit.
  ***********************************************************************************/
-void deinEffekt14(int step) {
+void deinEffekt1(int step) {
     effectSpeed = 25; // Update-Geschwindigkeit des Effekts
 
     const int count = ring.numPixels();

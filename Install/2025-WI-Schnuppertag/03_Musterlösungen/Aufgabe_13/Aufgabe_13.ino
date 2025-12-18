@@ -58,7 +58,7 @@ void deinEffekt1(int step) {
         effectSpeed = 20; // Schnell
         ring.setPixelColor(pos, gruen); // Grün
     } else if ((step / ring.numPixels()) % 4 == 2) {
-        effectSpeed = 250; // Langsamer
+        effectSpeed = 150; // Langsamer
         ring.setPixelColor(pos, blau); // Blau
     } else {
         effectSpeed = 50; // Mittel

@@ -21,7 +21,7 @@ void setup() {
 
 void loop() {
     if (updateErforderlich()) {
-        deinEffekt16(step);
+        deinEffekt1(step);
         ring.show();
     }
 }
@@ -31,7 +31,7 @@ void loop() {
  * - Zwei sanfte Farb-Wellen wandern gegeneinander
  * - Helligkeit "atmet" und mischt sich zu neuen Farben
  ***********************************************************************************/
-void deinEffekt16(int step) {
+void deinEffekt1(int step) {
     effectSpeed = 22; // geschmeidig, aber flott genug
 
     const int count = ring.numPixels();
