@@ -88,7 +88,7 @@ Willkommen beim Schnupperprojekt der HTL Anichstraße - Abteilung Wirtschaftsing
 
 ### Schritt 1: Download-Skript von GitHub herunterladen
 
-**Empfohlen - so kommst du an die Datei:**
+**Empfohlen - so kommst du an das Download-Skript:**
 
 > **💡 Wichtig:** Wenn du das Download-Skript ausführst, werden **alle benötigten Bibliotheken und Dateien automatisch installiert**! Du musst dann **Schritt 4 (Adafruit NeoPixel Bibliothek)** aus der obigen Anleitung **nicht mehr manuell durchführen**, da dies bereits vom Skript erledigt wird. Die Arduino IDE und ESP32 Board Support (Schritte 1-3) sollten jedoch vorher installiert sein.
 
@@ -223,7 +223,7 @@ Projektstruktur nach Installation:
 
 ### Datei-Struktur
 
-Das Projekt enthält drei Hauptordner:
+Das Projekt, das unter `Dokumente/Arduino/2025-WI-Schnuppertag` zu finden ist, enthält drei Hauptordner:
 
 **📁 01_Programmieren** – Programmierübungen für Anfänger:
 - **`01_Programmieren.ino`** – Hier programmierst du! Dein Hauptcode für erste Übungen mit dem LED-Ring.
