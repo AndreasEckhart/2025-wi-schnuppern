@@ -25,7 +25,8 @@ void setup() {
 // Loop-Funktion - wird ununterbrochen ausgeführt
 void loop() {
     // hier kommt der Effekt-Code hin
-    ring.setPixelColor(12, 0, 255, 0);
+    int gruen = ring.Color(0, 255, 0);
+    ring.fill(gruen);
     ring.show();
 }
 
